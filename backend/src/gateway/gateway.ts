@@ -43,6 +43,7 @@ export class ChatGateway
     this.logger.debug(`message: ${data}`);
     this.server.emit('onMessage', {
       from: client.id,
+      messageId: `${client.id}-${Date.now()}`,
       message: data,
     });
   }
