@@ -1,3 +1,4 @@
+import { randomUUID as uuid } from 'node:crypto';
 import { Logger } from '@nestjs/common';
 import {
   OnGatewayConnection,
@@ -43,7 +44,7 @@ export class ChatGateway
     this.logger.debug(`message: ${data}`);
     this.server.emit('onMessage', {
       from: client.id,
-      messageId: `${client.id}-${Date.now()}`,
+      messageId: uuid(),
       message: data,
     });
   }
