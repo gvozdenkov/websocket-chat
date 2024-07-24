@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -25,7 +25,8 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  align-items: flex-start;
+  justify-content: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -52,6 +53,40 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: space-between;
+}
+
+.message-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 20px;
+}
+
+.message-section__label {
+  display: none;
+}
+
+.message-section__input {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid rgba(255 255 255 / 0.3);
+  outline: 0;
+  background-color: transparent;
+  transition: border-bottom ease-out 0.3s;
+  padding: 10px 0;
+  font-size: 16px;
+}
+
+.message-section__input:hover,
+.message-section__input:focus {
+  border-bottom: 1px solid rgba(255 255 255 / 0.6);
 }
 
 @media (prefers-color-scheme: light) {
