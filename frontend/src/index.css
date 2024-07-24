@@ -59,14 +59,39 @@ button:focus-visible {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  width: max(50vw, 320px);
   justify-content: space-between;
+}
+
+.chat-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: end;
+  gap: 10px 0;
+}
+
+.chat-list__message {
+  padding: 10px;
+  background-color: #747bff;
+  border-radius: 8px;
+  display: flex;
+  width: fit-content;
+}
+
+.chat-list__message_self {
+  background-color: coral;
+  align-self: flex-end;
 }
 
 .message-section {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding-bottom: 20px;
+  padding: 20px 0;
 }
 
 .message-section__label {

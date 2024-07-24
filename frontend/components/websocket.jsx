@@ -11,10 +11,8 @@ export var Websocket = () => {
       console.log('-> Connected!');
     });
 
-    socket.on('onMessage', (data) => {
-      console.log('-> message:', data);
-      setMessages((m) => m.push(data));
-      console.log('now messages:', messages);
+    socket.on('onMessage', (newMessage) => {
+      setMessages((prev) => [...prev, newMessage]);
     });
 
     return () => {
@@ -24,14 +22,29 @@ export var Websocket = () => {
     };
   }, []);
 
-  var handleMessageSend = () => {
+  var handleMessageSend = (e) => {
+    e.preventDefault();
     socket.emit('newMessage', input);
     setInput('');
   };
 
+  var messageList = messages.map((msg) => {
+    var isSelfMessage = msg.from === socket.id;
+    var cn = `chat-list__message ${
+      isSelfMessage ? 'chat-list__message_self' : 'chat-list__message_other'
+    }`;
+
+    return (
+      <li key={msg.messageId} className={cn}>
+        {msg.message}
+      </li>
+    );
+  });
+
   return (
-    <div className='chat'>
+    <div className="chat">
       <h1>Websocket Chat</h1>
+      <ul className="chat-list">{messageList}</ul>
       <form className="message-section">
         <label htmlFor="message" className="message-section__label">
           Message
@@ -43,7 +56,7 @@ export var Websocket = () => {
           className="message-section__input"
           type="text"
         />
-        <button onClick={handleMessageSend} type="submit">
+        <button onClick={handleMessageSend} type="submit" disabled={!input.length}>
           Send
         </button>
       </form>
