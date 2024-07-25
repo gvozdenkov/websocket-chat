@@ -1,4 +1,4 @@
-import { Websocket } from '../components/websocket';
+import { Websocket } from './components/websocket';
 
 function App() {
   return <Websocket />;
