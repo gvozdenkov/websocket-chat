@@ -5,11 +5,14 @@ import Joi from 'joi';
 @Module({
   imports: [
     ConfigModule.forRoot({
+      envFilePath: `./.env.${process.env.NODE_ENV}`,
       validationSchema: Joi.object({
         NODE_ENV: Joi.string()
           .valid('production', 'development', 'test')
           .required(),
         PORT: Joi.number().required(),
+        JWT_SECRET: Joi.string().required(),
+        JWT_EXPIRES_IN: Joi.string().required(),
       }),
       validationOptions: {
         allowUnknown: true,
